@@ -14,7 +14,6 @@ console.log(galleryItems);
 const galleryBox = document.querySelector(".gallery");
 const galleryImagesMarkup = createGalleryItems(galleryItems);
 
-// 1.Создание и рендер разметки по массиву данных galleryItems и предоставленному шаблону элемента галереи.
 galleryBox.insertAdjacentHTML("beforeend", galleryImagesMarkup);
 
 function createGalleryItems(galleryItems) {
@@ -22,39 +21,17 @@ function createGalleryItems(galleryItems) {
     .map(({ preview, original, description }) => {
         return `<li class="gallery__item">
             <a class="gallery__item" href="${original}">
-            <img class="gallery__image" src="${preview}" alt="${description}" />
+            <img class="gallery__image" src="${preview}" alt="${description}" title="${description}"/>
             </a>
          </li> `;
   }).join('');
 }
 
-galleryBox.addEventListener('click', onGalleryClick);
 
-import SimpleLightbox from "simplelightbox";
-
-// function onGalleryClick(evt) {
-//   evt.preventDefault(); //отмена автоматического перехода по ссылке
-//   const isGalleryItem = evt.target.classList.contains('gallery__image');
-//   if (!isGalleryItem) {
-//     return;
-//   }
-    
-    let gallery = new SimpleLightbox('.gallery__item');
-gallery.on('show.simplelightbox', function () {
-	// Do something…
-});
-
-gallery.on('error.simplelightbox', function (e) {
-	console.log(e); // Some usefull information
-});
-
-// with jQuery nearly the same
-let gallery = $('.gallery a').simpleLightbox();
-gallery.on('show.simplelightbox', function () {
-	// Do something…
-});
-
-//     <div class="gallery">
-//     <a href="${original}"><img src="${preview}" alt="${description}" title="${description}"/></a>
-//     <a href="images/image2.jpg"><img src="images/thumbs/thumb2.jpg" alt="" title="Beautiful Image"/></a>
-// </div>
+let gallery = new SimpleLightbox(".gallery__item", {
+    captionsData: "title",
+    captionPosition: "bottom",
+    captionDelay: 250,
+}
+);
+console.log(gallery);
