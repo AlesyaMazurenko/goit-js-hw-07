@@ -51,10 +51,22 @@ function onGalleryClick(evt) {
     return;
   }
  
-  // 4.Открытие модального окна по клику на элементе галереи. Замена значения атрибута src элемента <img> в модальном окне перед открытием
+  // 4.Открытие модального окна по клику на элементе галереи. 
   const targetItemAddr = evt.target.dataset.source;
   const instance = basicLightbox.create(`
     <img src="${targetItemAddr}">
 `);
   instance.show();
-}
+  console.log(instance);
+};
+
+// window.addEventListence('keydown', onCloseBtn);
+// function onCloseBtn(evt) {
+//   if (evt.key === "Escape") {
+//     onclose();
+//   } 
+ 
+// };
+
+
+
